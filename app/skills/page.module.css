@@ -1,0 +1,147 @@
+.page {
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+.intro {
+  margin-bottom: var(--space-10);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--border);
+  background-color: var(--bg-surface);
+  border-left: 3px solid var(--accent);
+}
+
+.introText {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 780px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+/* Cluster */
+.cluster {
+  border: 1px solid var(--border);
+  background-color: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition-slow);
+}
+
+.cluster:hover {
+  border-color: var(--accent);
+}
+
+.clusterHeader {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.clusterMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.clusterNum {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  border: 1px solid var(--accent);
+  padding: 2px 6px;
+}
+
+.clusterLabel {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.clusterTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Skill list */
+.skillList {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-5);
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.skillRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.skillIndex {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.skillName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.skillBar {
+  flex: 1;
+  height: 2px;
+  background-color: var(--border);
+}
+
+.skillBarFill {
+  height: 100%;
+  background-color: var(--accent);
+  width: 80%;
+  opacity: 0.5;
+}
+
+/* Footer */
+.clusterFooter {
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.descriptor {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+

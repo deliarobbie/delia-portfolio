@@ -1,0 +1,111 @@
+.placeholder {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  z-index: 1;
+}
+
+/* Crosshair */
+.crosshair {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crossV {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: var(--border);
+  left: 50%;
+}
+
+.crossH {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: var(--border);
+  top: 50%;
+}
+
+.crossCircle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-page);
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sublabel {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+/* Corner marks */
+.corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--border);
+  border-style: solid;
+}
+
+.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+/* Diagonal lines */
+.placeholder::before,
+.placeholder::after {
+  content: '';
+  position: absolute;
+  background-color: var(--border);
+  opacity: 0.3;
+}
+
+.placeholder::before {
+  width: 140%;
+  height: 1px;
+  transform: rotate(45deg) translateY(-50%);
+  transform-origin: center;
+  top: 50%;
+  left: -20%;
+}
+
+.placeholder::after {
+  width: 140%;
+  height: 1px;
+  transform: rotate(-45deg) translateY(-50%);
+  transform-origin: center;
+  top: 50%;
+  left: -20%;
+}
+

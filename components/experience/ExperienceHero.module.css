@@ -1,0 +1,143 @@
+.section {
+  border: 1px solid var(--border);
+  margin-bottom: var(--space-6);
+  background-color: var(--bg-surface);
+}
+
+.label {
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg-secondary);
+}
+
+.labelText {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 0;
+}
+
+/* Image column */
+.imageCol {
+  position: relative;
+  border-right: 1px solid var(--border);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.diagram {
+  width: 100%;
+  border: 1px solid var(--border);
+}
+
+.imageMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.imageMeta span {
+  font-size: 8px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.figNum {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* Content column */
+.contentCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.topMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.roleTier {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.orgRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.scopeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  background-color: var(--bg-secondary);
+}
+
+.scopeLabel {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.scopeText {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border);
+  width: 100%;
+  opacity: 0.4;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.metaItem {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* Responsive */
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .imageCol {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
