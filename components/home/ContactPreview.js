@@ -8,7 +8,7 @@ export default function ContactPreview() {
   const emailDisabled = !profile.email || profile.email.includes('PLACEHOLDER');
 
   return (
-    <section className={styles.section} aria-label="Profile — Contact Preview">
+    <section id="contact" className={styles.section} aria-label="Profile — Contact Preview">
       <div className="container">
         <div className={styles.sectionLabel}>
           <span className={`${styles.labelText} mono`}>// PROFILE_BANNER // BIO PREVIEW & ROUTING //</span>

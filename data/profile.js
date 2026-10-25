@@ -10,11 +10,11 @@ const profile = {
   focus: 'Distributed Systems',
   availability: 'Contact for Opportunities',
   // ── CONFIGURE THESE BEFORE DEPLOYING ────────────────────────
-  email: 'PLACEHOLDER_EMAIL@example.com',
-  github: 'https://github.com/PLACEHOLDER_GITHUB',
-  linkedin: 'https://linkedin.com/in/PLACEHOLDER_LINKEDIN',
+  email: 'robbie0623@outlook.com',
+  github: 'https://github.com/deliarobbie',
+  linkedin: 'https://www.linkedin.com/in/robertdelia/',
   schedulingUrl: 'PLACEHOLDER_SCHEDULING_URL', // e.g. https://calendly.com/your-link
-  resumeFile: '/resume/PLACEHOLDER_RESUME.pdf',
+  resumeFile: '/resume/Robert_Delia_Resume101426.pdf',
   // ────────────────────────────────────────────────────────────
 };
 

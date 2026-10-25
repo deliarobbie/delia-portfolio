@@ -39,7 +39,8 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body>
+      {/* Browser extensions may add body attributes before React hydrates. */}
+      <body suppressHydrationWarning>
         <ThemeProvider>
           <div className="site-wrapper">
             <Header />

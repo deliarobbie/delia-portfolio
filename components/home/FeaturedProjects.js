@@ -10,7 +10,7 @@ export default function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured);
 
   return (
-    <section className={styles.section} aria-label="Featured Projects">
+    <section id="projects" className={styles.section} aria-label="Featured Projects">
       <div className="container">
         <SectionHeading
           number="02"

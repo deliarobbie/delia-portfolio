@@ -20,7 +20,12 @@
 }
 
 .portrait {
+  display: block;
   width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
   border: 1px solid var(--border-strong);
 }
 

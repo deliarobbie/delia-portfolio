@@ -7,7 +7,7 @@ import styles from './ExperienceTimeline.module.css';
 
 export default function ExperienceTimeline() {
   return (
-    <section className={styles.section} aria-label="Experience & Career Timeline">
+    <section id="experience" className={styles.section} aria-label="Experience & Career Timeline">
       <div className="container">
         <SectionHeading
           number="01"

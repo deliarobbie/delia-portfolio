@@ -5,7 +5,7 @@ import styles from './SkillsGrid.module.css';
 
 export default function SkillsGrid() {
   return (
-    <section className={styles.section} aria-label="Technical Skills & Clusters">
+    <section id="skills" className={styles.section} aria-label="Technical Skills & Clusters">
       <div className="container">
         <SectionHeading
           number="03"
