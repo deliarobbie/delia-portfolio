@@ -3,7 +3,8 @@ import styles from './ImagePlaceholder.module.css';
 /**
  * @param {{ label?: string, aspectRatio?: string, className?: string, sublabel?: string }} props
  */
-export default function ImagePlaceholder({ label = 'IMAGE', aspectRatio = '4/5', className = '', sublabel = '' }) {
+export default function ImagePlaceholder({ label = 'IMAGE', aspectRatio = '4/5', className = '', sublabel = '', src, alt }) {
+  if (src) return <img src={src} alt={alt || label} className={className} style={{ width: '100%', aspectRatio, objectFit: 'cover', objectPosition: 'top', display: 'block' }} />;
   return (
     <div
       className={`${styles.placeholder} ${className}`}

@@ -34,6 +34,8 @@ export default function ProjectsPage() {
 
               <div className={styles.imageWrapper}>
                 <ImagePlaceholder
+          src={project.image}
+          alt={project.imageAlt}
                   label={isPlaceholder ? '// RESERVE_SLOT — ARCHITECTURE IN PROGRESS' : `// ${project.id} PREVIEW`}
                   aspectRatio="16/9"
                 />
@@ -52,7 +54,8 @@ export default function ProjectsPage() {
                     <Button href={`/projects/${project.slug}`} variant="primary">
                       ⊕ Open Case Study
                     </Button>
-                    {project.githubUrl && !project.githubUrl.includes('PLACEHOLDER') && (
+                    {project.liveUrl && (<a href={project.liveUrl} className={`${styles.sourceLink} mono`} target="_blank" rel="noopener noreferrer">[ {project.liveLabel || 'Live Demo'} ]</a>)}
+{project.githubUrl && !project.githubUrl.includes('PLACEHOLDER') && (
                       <a
                         href={project.githubUrl}
                         className={`${styles.sourceLink} mono`}

@@ -1,6 +1,7 @@
 import profile from '../../data/profile';
 import Button from '../../components/ui/Button';
-import ImagePlaceholder from '../../components/ui/ImagePlaceholder';
+import CopyEmailButton from '../../components/ui/CopyEmailButton';
+import Monogram from '../../components/ui/Monogram';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -12,7 +13,6 @@ export default function ContactPage() {
   const emailDisabled = !profile.email || profile.email.includes('PLACEHOLDER');
   const linkedinDisabled = !profile.linkedin || profile.linkedin.includes('PLACEHOLDER');
   const githubDisabled = !profile.github || profile.github.includes('PLACEHOLDER');
-  const scheduleDisabled = !profile.schedulingUrl || profile.schedulingUrl.includes('PLACEHOLDER');
 
   return (
     <div className={`container ${styles.page}`}>
@@ -28,13 +28,7 @@ export default function ContactPage() {
         {/* Contact card */}
         <div className={styles.contactCard}>
           <div className={styles.avatarSection}>
-            <div className={styles.avatarFrame}>
-              <ImagePlaceholder
-                label="RD"
-                aspectRatio="1/1"
-                className={styles.avatar}
-              />
-            </div>
+            <Monogram />
             <div className={styles.nameBlock}>
               <h2 className={styles.name}>{profile.name}</h2>
               <p className={`${styles.role} mono`}>{profile.title}</p>
@@ -103,14 +97,7 @@ export default function ContactPage() {
               ✉ Email Direct
             </Button>
 
-            <Button
-              href={scheduleDisabled ? undefined : profile.schedulingUrl}
-              variant="secondary"
-              external={!scheduleDisabled}
-              disabled={scheduleDisabled}
-            >
-              ⊞ Schedule Screen
-            </Button>
+            <CopyEmailButton email={profile.email} disabled={emailDisabled} />
 
             <Button
               href={profile.resumeFile}
@@ -130,7 +117,7 @@ export default function ContactPage() {
               </Button>
             )}
 
-            {(emailDisabled || scheduleDisabled) && (
+            {emailDisabled && (
               <p className={`${styles.configNote} mono`}>
                 ⚠ Configure placeholders in data/profile.js
               </p>

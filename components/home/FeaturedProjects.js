@@ -39,13 +39,15 @@ function ProjectCard({ project }) {
         {isPlaceholder ? (
           <span className={`${styles.statusBadge} ${styles.placeholderStatus} mono`}>PLACEHOLDER</span>
         ) : (
-          <span className={`${styles.statusBadge} ${styles.liveStatus} mono`}>PROJ_READY</span>
+          <span className={`${styles.statusBadge} ${styles.liveStatus} mono`}>{project.status === 'prototype' ? 'PROTOTYPE' : 'PROJ_READY'}</span>
         )}
       </div>
 
       {/* Project preview image */}
       <div className={styles.imageWrapper}>
         <ImagePlaceholder
+          src={project.image}
+          alt={project.imageAlt}
           label={isPlaceholder ? '// RESERVE_SLOT — ARCHITECTURE IN PROGRESS' : '// PROJECT_PREVIEW_IMG // 16:9'}
           sublabel={isPlaceholder ? '' : 'FREQUENCY: PYTHON / (360 > 16:9)'}
           aspectRatio="16/9"
@@ -71,7 +73,8 @@ function ProjectCard({ project }) {
             >
               ⊕ Open Case Study
             </Button>
-            {project.githubUrl && !project.githubUrl.includes('PLACEHOLDER') && (
+            {project.liveUrl && (<a href={project.liveUrl} className={`${styles.sourceLink} mono`} target="_blank" rel="noopener noreferrer">[ {project.liveLabel || 'Live Demo'} ]</a>)}
+{project.githubUrl && !project.githubUrl.includes('PLACEHOLDER') && (
               <a
                 href={project.githubUrl}
                 className={`${styles.sourceLink} mono`}
@@ -81,7 +84,7 @@ function ProjectCard({ project }) {
                 [ View Source Code ]
               </a>
             )}
-            {(!project.githubUrl || project.githubUrl.includes('PLACEHOLDER')) && (
+            {!project.liveUrl && (!project.githubUrl || project.githubUrl.includes('PLACEHOLDER')) && (
               <span className={`${styles.sourceLink} ${styles.sourcePlaceholder} mono`} title="Configure in data/projects.js">
                 [ View Source Code ]
               </span>

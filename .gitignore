@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /.next-dev/
+/.next-dev-backup-*/
+/.next-portfolio-check/
 /.next-production/
 /out/
 

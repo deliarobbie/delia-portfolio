@@ -11,13 +11,15 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
+  params = await params;
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return { title: 'Project Not Found' };
   return { title: project.title, description: project.description };
 }
 
-export default function ProjectDetailPage({ params }) {
+export default async function ProjectDetailPage({ params }) {
+  params = await params;
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) notFound();
 
@@ -45,6 +47,8 @@ export default function ProjectDetailPage({ params }) {
       {/* Hero */}
       <div className={styles.hero}>
         <ImagePlaceholder
+          src={project.image}
+          alt={project.imageAlt}
           label={isPlaceholder ? '// PROJECT_DIAGRAM — PLACEHOLDER' : '// PROJECT_OVERVIEW_DIAGRAM'}
           sublabel={project.id}
           aspectRatio="16/6"
@@ -74,12 +78,12 @@ export default function ProjectDetailPage({ params }) {
           </section>
 
           <section className={styles.block}>
-            <h2 className={`${styles.blockTitle} mono`}>// ARCHITECTURE</h2>
+            <h2 className={`${styles.blockTitle} mono`}>// {project.approachLabel || 'ARCHITECTURE'}</h2>
             <p className={styles.blockText}>{project.architecture}</p>
           </section>
 
           <section className={styles.block}>
-            <h2 className={`${styles.blockTitle} mono`}>// IMPLEMENTATION_HIGHLIGHTS</h2>
+            <h2 className={`${styles.blockTitle} mono`}>// {project.highlightsLabel || 'IMPLEMENTATION_HIGHLIGHTS'}</h2>
             <ul className={styles.highlightList}>
               {project.implementationHighlights.map((h, i) => (
                 <li key={i} className={styles.highlightItem}>
@@ -115,7 +119,7 @@ export default function ProjectDetailPage({ params }) {
               )}
               {project.liveUrl && (
                 <Button href={project.liveUrl} variant="ghost" external>
-                  [ Live Demo ]
+                  [ {project.liveLabel || 'Live Demo'} ]
                 </Button>
               )}
             </div>

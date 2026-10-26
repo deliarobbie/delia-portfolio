@@ -36,13 +36,16 @@ export default function Hero() {
 
           <h1 className={styles.name}>[ {profile.name} ]</h1>
           <p className={`${styles.subtitle} mono`}>
-            [ {profile.title} ]
+            {profile.heroTitle}
           </p>
 
-          <div className={styles.summaryBlock}>
-            <span className={`${styles.summaryLabel} mono`}>// PROFESSIONAL_ABSTRACT</span>
-            <p className={styles.summary}>{profile.summary}</p>
-          </div>
+          <p className={styles.intro}>{profile.heroIntro}</p>
+
+          <ul className={styles.highlights} aria-label="Professional highlights">
+            {profile.heroHighlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
 
           <div className={styles.actions}>
             <Button
@@ -71,21 +74,6 @@ export default function Hero() {
             </Button>
           </div>
 
-          {/* Metadata cards */}
-          <div className={styles.metaGrid}>
-            <div className={styles.metaCard}>
-              <span className={`${styles.metaLabel} mono`}>DISCIPLINE</span>
-              <span className={styles.metaValue}>{profile.discipline}</span>
-            </div>
-            <div className={styles.metaCard}>
-              <span className={`${styles.metaLabel} mono`}>FOCUS</span>
-              <span className={styles.metaValue}>{profile.focus}</span>
-            </div>
-            <div className={styles.metaCard}>
-              <span className={`${styles.metaLabel} mono`}>AVAILABILITY</span>
-              <span className={styles.metaValue}>{profile.availability}</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

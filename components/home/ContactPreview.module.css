@@ -43,20 +43,6 @@
   gap: var(--space-2);
 }
 
-.avatarFrame {
-  width: 80px;
-}
-
-.avatar {
-  border: 1px solid var(--border) !important;
-}
-
-.avatarLabel {
-  font-size: 8px;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-}
-
 /* Bio */
 .bioCol {
   display: flex;

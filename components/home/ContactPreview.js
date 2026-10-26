@@ -1,10 +1,10 @@
-import ImagePlaceholder from '../ui/ImagePlaceholder';
+import Monogram from '../ui/Monogram';
 import Button from '../ui/Button';
+import CopyEmailButton from '../ui/CopyEmailButton';
 import profile from '../../data/profile';
 import styles from './ContactPreview.module.css';
 
 export default function ContactPreview() {
-  const scheduleDisabled = !profile.schedulingUrl || profile.schedulingUrl.includes('PLACEHOLDER');
   const emailDisabled = !profile.email || profile.email.includes('PLACEHOLDER');
 
   return (
@@ -18,15 +18,7 @@ export default function ContactPreview() {
         <div className={styles.inner}>
           {/* Left: Avatar */}
           <div className={styles.avatarCol}>
-            <div className={styles.avatarFrame}>
-              <ImagePlaceholder
-                label="AVATAR_1.2"
-                sublabel="// ID_BADGE_V2"
-                aspectRatio="1/1"
-                className={styles.avatar}
-              />
-            </div>
-            <span className={`${styles.avatarLabel} mono`}>// RD_BADGE_V2</span>
+            <Monogram />
           </div>
 
           {/* Center: Bio */}
@@ -37,7 +29,7 @@ export default function ContactPreview() {
             </p>
             <p className={styles.bio}>
               Actively pursuing technical architecture roles with high-impact infrastructure challenges.
-              Let&apos;s discuss system reliability, latency reduction, or distributed engineering paths.
+              Let&apos;s discuss.
             </p>
             <div className={styles.meta}>
               <span className={`${styles.metaItem} mono`}>FOR: 1000_IMPACT_CLI</span>
@@ -55,16 +47,8 @@ export default function ContactPreview() {
             >
               ✉ Email Direct
             </Button>
-            <Button
-              href={scheduleDisabled ? undefined : profile.schedulingUrl}
-              variant="secondary"
-              external={!scheduleDisabled}
-              disabled={scheduleDisabled}
-              aria-label={scheduleDisabled ? 'Scheduling not configured' : 'Schedule a screen'}
-            >
-              ⊞ Schedule Screen
-            </Button>
-            {(scheduleDisabled || emailDisabled) && (
+            <CopyEmailButton email={profile.email} disabled={emailDisabled} />
+            {emailDisabled && (
               <span className={`${styles.configNote} mono`}>
                 Configure in data/profile.js
               </span>

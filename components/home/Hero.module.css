@@ -74,23 +74,25 @@
   letter-spacing: 0.03em;
 }
 
-.summaryBlock {
+.highlights {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  border: 1px solid var(--border);
-  background-color: var(--bg-secondary);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
-.summaryLabel {
-  font-size: 10px;
+.highlights li:not(:last-child)::after {
+  content: '\00b7';
+  margin-left: var(--space-4);
   color: var(--text-muted);
-  letter-spacing: 0.08em;
 }
 
-.summary {
-  font-size: 14px;
+.intro {
+  max-width: 52ch;
+  font-size: 18px;
   color: var(--text-primary);
   line-height: 1.65;
 }
@@ -99,37 +101,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-}
-
-/* Metadata grid */
-.metaGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
-  margin-top: var(--space-2);
-}
-
-.metaCard {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  background-color: var(--bg-surface);
-}
-
-.metaLabel {
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.metaValue {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
 }
 
 /* Responsive */
@@ -149,10 +120,6 @@
     max-width: 320px;
     margin: 0 auto;
     width: 100%;
-  }
-
-  .metaGrid {
-    grid-template-columns: 1fr;
   }
 
   .name {

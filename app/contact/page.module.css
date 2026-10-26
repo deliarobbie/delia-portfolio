@@ -52,15 +52,6 @@
   align-items: flex-start;
 }
 
-.avatarFrame {
-  width: 80px;
-  flex-shrink: 0;
-}
-
-.avatar {
-  border: 1px solid var(--border) !important;
-}
-
 .nameBlock {
   display: flex;
   flex-direction: column;

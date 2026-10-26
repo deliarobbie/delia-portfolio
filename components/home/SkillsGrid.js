@@ -5,32 +5,26 @@ import styles from './SkillsGrid.module.css';
 
 export default function SkillsGrid() {
   return (
-    <section id="skills" className={styles.section} aria-label="Technical Skills & Clusters">
+    <section id="skills" className={styles.section} aria-label="Technical Skills">
       <div className="container">
         <SectionHeading
           number="03"
-          title="[ TECHNICAL SKILLS & CLUSTERS ]"
-          meta={`CATEGORIES: ${skillCategories.length.toString().padStart(2, '0')}`}
+          title="[ TECHNICAL SKILLS ]"
+          className={styles.heading}
         />
 
-        <div className={styles.grid}>
-          {skillCategories.map((cat, index) => (
+        <dl className={styles.grid}>
+          {skillCategories.map((cat) => (
             <div key={cat.id} className={styles.cluster}>
-              <div className={styles.clusterHeader}>
-                <span className={`${styles.clusterLabel} mono`}>{cat.label}</span>
-                <span className={`${styles.clusterNum} mono`}>{(index + 1).toString().padStart(2, '0')}</span>
-              </div>
-
-              <div className={styles.tags}>
+              <dt className={`${styles.category} mono`}>{cat.title}</dt>
+              <dd className={styles.skills}>
                 {cat.skills.map((skill) => (
-                  <SkillTag key={skill}>{skill}</SkillTag>
+                  <SkillTag key={skill} className={styles.chip}>{skill}</SkillTag>
                 ))}
-              </div>
-
-              <p className={`${styles.descriptor} mono`}>LEVEL: {cat.descriptor}</p>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );
