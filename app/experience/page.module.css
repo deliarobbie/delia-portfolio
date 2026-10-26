@@ -9,6 +9,8 @@
 }
 
 .card {
+  position: relative;
+  isolation: isolate;
   border: 1px solid var(--border);
   background-color: var(--bg-surface);
   transition: border-color var(--transition-slow);
@@ -166,3 +168,16 @@
   }
 }
 
+
+/* Extend the details link to the full card. */
+.viewLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card:has(.viewLink:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

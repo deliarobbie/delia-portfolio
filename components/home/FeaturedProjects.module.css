@@ -4,13 +4,60 @@
 }
 
 .grid {
+  min-width: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--space-6)) / 2);
   gap: var(--space-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px var(--space-4);
+  scrollbar-color: var(--accent) var(--bg-secondary);
+}
+
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.arrow:hover:enabled {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 /* Card */
 .card {
+  min-width: 0;
+  scroll-snap-align: start;
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
@@ -140,7 +187,25 @@
 /* Responsive */
 @media (max-width: 767px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-auto-columns: 88%;
   }
 }
 
+
+/* Extend the case-study link across the card, keeping external links above it. */
+.cardLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card:has(.cardLink:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sourceLink[href] {
+  position: relative;
+  z-index: 2;
+}

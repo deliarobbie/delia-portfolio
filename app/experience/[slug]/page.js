@@ -13,8 +13,9 @@ export function generateStaticParams() {
   return experiences.map((exp) => ({ slug: exp.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const exp = experiences.find((e) => e.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const exp = experiences.find((e) => e.slug === slug);
   if (!exp) return { title: 'Experience Not Found' };
   return {
     title: exp.title,
@@ -22,8 +23,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function ExperienceDetailPage({ params }) {
-  const expIndex = experiences.findIndex((e) => e.slug === params.slug);
+export default async function ExperienceDetailPage({ params }) {
+  const { slug } = await params;
+  const expIndex = experiences.findIndex((e) => e.slug === slug);
   if (expIndex === -1) notFound();
 
   const exp = experiences[expIndex];

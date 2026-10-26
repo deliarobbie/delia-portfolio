@@ -2,7 +2,6 @@ import Link from 'next/link';
 import projects from '../../data/projects';
 import SectionHeading from '../../components/ui/SectionHeading';
 import SkillTag from '../../components/ui/SkillTag';
-import Button from '../../components/ui/Button';
 import ImagePlaceholder from '../../components/ui/ImagePlaceholder';
 import styles from './page.module.css';
 
@@ -34,15 +33,15 @@ export default function ProjectsPage() {
 
               <div className={styles.imageWrapper}>
                 <ImagePlaceholder
-          src={project.image}
-          alt={project.imageAlt}
+          src={project.cardImage || project.image}
+          alt={project.cardImageAlt || project.imageAlt}
                   label={isPlaceholder ? '// RESERVE_SLOT — ARCHITECTURE IN PROGRESS' : `// ${project.id} PREVIEW`}
                   aspectRatio="16/9"
                 />
               </div>
 
               <div className={styles.content}>
-                <h2 className={styles.title}>{project.title}</h2>
+                <h2 className={styles.title}>{isPlaceholder ? project.title : <Link href={`/projects/${project.slug}`} className={styles.cardLink}>{project.title}</Link>}</h2>
                 <p className={styles.description}>{project.description}</p>
                 <div className={styles.tags}>
                   {project.technologies.map((t) => (
@@ -51,9 +50,6 @@ export default function ProjectsPage() {
                 </div>
                 {!isPlaceholder && (
                   <div className={styles.actions}>
-                    <Button href={`/projects/${project.slug}`} variant="primary">
-                      ⊕ Open Case Study
-                    </Button>
                     {project.liveUrl && (<a href={project.liveUrl} className={`${styles.sourceLink} mono`} target="_blank" rel="noopener noreferrer">[ {project.liveLabel || 'Live Demo'} ]</a>)}
 {project.githubUrl && !project.githubUrl.includes('PLACEHOLDER') && (
                       <a

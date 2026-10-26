@@ -27,7 +27,10 @@ const projects = [
       'Deployed full-stack access control system integrating physical RFID hardware with a web-based administrative platform.',
     githubUrl: 'https://github.com/PLACEHOLDER_GITHUB/makerspace-access-control',
     liveUrl: null,
-    imageAlt: 'Makerspace Access Control System Architecture',
+    image: '/images/projects/makerspacewebapp.jpg',
+    imageAlt: 'Makerspace access control web application',
+    cardImage: '/images/projects/staffmemberpage.jpg',
+    cardImageAlt: 'Makerspace staff member management page',
   },
   {
     id: 'PROJ-002',
@@ -55,6 +58,16 @@ const projects = [
     liveLabel: 'Original Prototypes',
     image: '/images/projects/portfolio.jpg',
     imageAlt: 'Robbie Delia portfolio homepage and professional introduction',
+  },
+  {
+    id: 'PROJ-003',
+    slug: 'upcoming-project',
+    title: 'Next Project / Coming Soon',
+    status: 'placeholder',
+    featured: true,
+    description: 'A reserved space for my next project. More details, technical decisions, and results will be added as the work develops.',
+    technologies: [],
+    implementationHighlights: [],
   },
 ];
 

@@ -9,6 +9,8 @@
 }
 
 .card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
@@ -118,3 +120,21 @@
   }
 }
 
+
+/* Extend the case-study link across the card, keeping external links above it. */
+.cardLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card:has(.cardLink:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sourceLink[href] {
+  position: relative;
+  z-index: 2;
+}
