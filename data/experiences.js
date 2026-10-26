@@ -2,6 +2,9 @@ const experiences = [
   {
     id: 'EXP-001',
     slug: 'maap-automation',
+    logo: '/images/logos/AFRL_LOGO.png',
+    logoAlt: 'Air Force Research Laboratory logo',
+    image: '/images/experience/AFRL_wide.jpg',
     title: 'Master Air Attack Plan (MAAP) Automation & AI Planning',
     organization: 'USAF APEX GEAR Program',
     orgShort: 'USAF APEX GEAR',
@@ -66,6 +69,9 @@ const experiences = [
   {
     id: 'EXP-002',
     slug: 'afsim-simulation',
+    logo: '/images/logos/AFRL_LOGO.png',
+    logoAlt: 'Air Force Research Laboratory logo',
+    image: '/images/experience/AFRL_wide.jpg',
     title: 'USAF Advanced Framework for Simulation, Integration, and Modeling (AFSIM) Automated Simulation & Code Generation',
     organization: 'DoD 6.1 Foundational Research Initiative',
     orgShort: 'DoD 6.1 Research',

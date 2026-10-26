@@ -16,16 +16,18 @@ export default function ExperienceHero({ experience: exp }) {
       <div className={styles.grid}>
         {/* Left: diagram */}
         <div className={styles.imageCol}>
-          <ImagePlaceholder
+          {exp.image ? (
+            <img src={exp.image} alt="Air Force Research Laboratory" className={styles.heroImage} />
+          ) : <ImagePlaceholder
             label="[ ARCHITECTURAL_OVERVIEW ]"
             sublabel="[ 4:3 WIREFRAME_MEDIA_BOX ]"
             aspectRatio="4/3"
             className={styles.diagram}
-          />
-          <div className={styles.imageMeta} aria-hidden="true">
+          />}
+          {!exp.image && <div className={styles.imageMeta} aria-hidden="true">
             <span className="mono">{exp.id}_AIR_ATTACK_SCHEMATIC_V2.PNG</span>
             <span className="mono">APEX_GEAR // HCD_AI_FLOW</span>
-          </div>
+          </div>}
           <span className={`${styles.figNum} mono`}>FIG_01_A</span>
         </div>
 

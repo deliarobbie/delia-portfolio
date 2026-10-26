@@ -36,7 +36,7 @@ export default function ExperiencePage() {
               </div>
 
               <div className={styles.cardBody}>
-                <div className={styles.indexNum}>{String(i + 1).padStart(2, '0')}</div>
+                <img src={exp.logo} alt={exp.logoAlt} className={styles.logo} />
                 <div className={styles.content}>
                   <h2 className={styles.title}>{exp.title}</h2>
                   <p className={`${styles.org} mono`}>{exp.organization} // {exp.location}</p>

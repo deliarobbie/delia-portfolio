@@ -46,8 +46,8 @@ function ExperienceCard({ experience: exp }) {
 
       {/* Logo + title row */}
       <div className={styles.titleRow}>
-        <div className={styles.logoBox} aria-hidden="true">
-          <span className="mono" style={{ fontSize: '9px', color: 'var(--text-muted)' }}>LOGO</span>
+        <div className={styles.logoBox}>
+          <img src={exp.logo} alt={exp.logoAlt} className={styles.logo} />
         </div>
         <div className={styles.titleBlock}>
           <h2 className={styles.title}>{exp.title}</h2>

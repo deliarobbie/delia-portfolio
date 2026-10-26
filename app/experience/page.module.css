@@ -100,6 +100,13 @@
   min-width: 64px;
 }
 
+.logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .content {
   flex: 1;
   display: flex;
