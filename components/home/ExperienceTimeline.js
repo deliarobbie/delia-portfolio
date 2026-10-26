@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SectionHeading from '../ui/SectionHeading';
 import SkillTag from '../ui/SkillTag';
-import ImagePlaceholder from '../ui/ImagePlaceholder';
+import CardCarousel from '../ui/CardCarousel';
 import experiences from '../../data/experiences';
 import styles from './ExperienceTimeline.module.css';
 
@@ -15,11 +15,11 @@ export default function ExperienceTimeline() {
           meta="[ ↗ BROWSE ALL ]"
         />
 
-        <div className={styles.grid}>
+        <CardCarousel id="experience-carousel" label="experiences" count={experiences.length}>
           {experiences.map((exp) => (
             <ExperienceCard key={exp.id} experience={exp} />
           ))}
-        </div>
+        </CardCarousel>
       </div>
     </section>
   );
@@ -47,7 +47,7 @@ function ExperienceCard({ experience: exp }) {
       {/* Logo + title row */}
       <div className={styles.titleRow}>
         <div className={styles.logoBox}>
-          <img src={exp.logo} alt={exp.logoAlt} className={styles.logo} />
+          {exp.logo ? <img src={exp.logo} alt={exp.logoAlt} className={styles.logo} /> : <span className="mono">{exp.orgShort}</span>}
         </div>
         <div className={styles.titleBlock}>
           <h2 className={styles.title}>{exp.title}</h2>
@@ -71,7 +71,7 @@ function ExperienceCard({ experience: exp }) {
       {/* Footer */}
       <div className={styles.cardFooter}>
         <Link href={`/experience/${exp.slug}`} className={`${styles.inspectLink} mono`}>
-          [ Inspect Role & Metrics → ]
+          [ View Experience → ]
         </Link>
         <span className={`${styles.statusText} mono`}>STATUS: {statusLabel}</span>
       </div>

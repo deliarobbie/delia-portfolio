@@ -70,7 +70,7 @@ export default function Hero() {
               external
               aria-label="LinkedIn profile"
             >
-              &lt; LinkedIn / crit-delia &gt;
+              &lt; LinkedIn / robertdelia &gt;
             </Button>
           </div>
 

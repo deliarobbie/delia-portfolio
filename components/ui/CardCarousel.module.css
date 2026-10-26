@@ -1,0 +1,18 @@
+﻿.caption { margin-bottom: var(--space-4); font-size: 10px; color: var(--text-muted); }
+.carousel { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: var(--space-2); }
+.track {
+  min-width: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--space-6)) / 2);
+  gap: var(--space-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px var(--space-4);
+  scrollbar-color: var(--accent) var(--bg-secondary);
+}
+.track > * { min-width: 0; scroll-snap-align: start; }
+.arrow { width: 44px; height: 44px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-primary); font-size: 20px; cursor: pointer; }
+.arrow:hover:enabled { border-color: var(--accent); color: var(--accent); }
+.arrow:disabled { opacity: 0.35; cursor: default; }
+@media (max-width: 767px) { .track { grid-auto-columns: 88%; } }

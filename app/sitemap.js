@@ -4,7 +4,7 @@ import projects from '../data/projects';
 export default function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://robbiedelia.com';
 
-  const staticRoutes = ['/', '/experience', '/projects', '/skills', '/contact'].map((route) => ({
+  const staticRoutes = ['/', '/skills', '/contact'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
@@ -19,7 +19,7 @@ export default function sitemap() {
   }));
 
   const projectRoutes = projects
-    .filter((p) => p.status !== 'placeholder')
+    .filter((p) => p.status !== 'placeholder' && !p.cardOnly)
     .map((p) => ({
       url: `${baseUrl}/projects/${p.slug}`,
       lastModified: new Date(),

@@ -33,7 +33,14 @@ export default function Header() {
         }
       }
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
-        currentSection = 'contact';
+        const requestedId = window.location.hash.slice(1);
+        const requestedSection = document.getElementById(requestedId);
+        const requestedBounds = requestedSection?.getBoundingClientRect();
+        // Short final sections can share the same maximum scroll position.
+        // Keep the requested section selected while its heading is still visible.
+        currentSection = requestedBounds && requestedBounds.top >= headerHeight - 32 && requestedBounds.top < window.innerHeight
+          ? requestedId
+          : 'contact';
       }
       setActiveSection(currentSection);
     };
@@ -41,9 +48,11 @@ export default function Header() {
     updateActiveSection();
     window.addEventListener('scroll', updateActiveSection, { passive: true });
     window.addEventListener('resize', updateActiveSection);
+    window.addEventListener('hashchange', updateActiveSection);
     return () => {
       window.removeEventListener('scroll', updateActiveSection);
       window.removeEventListener('resize', updateActiveSection);
+      window.removeEventListener('hashchange', updateActiveSection);
     };
   }, [pathname]);
 

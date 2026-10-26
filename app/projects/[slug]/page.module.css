@@ -72,16 +72,20 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: var(--space-8);
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: var(--space-6);
   align-items: start;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+  display: grid;
+  grid-row: 1 / span 5;
+  grid-template-rows: subgrid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
 }
+
+.title, .techRow { grid-column: 1 / -1; }
 
 .title {
   font-size: clamp(22px, 3vw, 34px);
@@ -141,12 +145,15 @@
 
 /* Sidebar */
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  position: sticky;
-  top: calc(var(--nav-height) + var(--space-6));
+  display: grid;
+  grid-column: 2;
+  grid-row: 1 / span 5;
+  grid-template-rows: subgrid;
+  align-self: stretch;
 }
+
+.sidebar > :first-child { grid-row: 1 / span 2; align-self: start; }
+.sidebar > :last-child { grid-row: 3 / span 3; align-self: start; }
 
 .sideCard {
   border: 1px solid var(--border);
@@ -180,11 +187,18 @@
 }
 
 @media (max-width: 899px) {
-  .layout {
+  .layout { grid-template-columns: 1fr; }
+  .main {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-row: auto;
   }
   .sidebar {
-    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 

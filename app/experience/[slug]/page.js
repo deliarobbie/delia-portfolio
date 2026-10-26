@@ -2,11 +2,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import experiences from '../../../data/experiences';
 import ExperienceHero from '../../../components/experience/ExperienceHero';
-import SkillsUsed from '../../../components/experience/SkillsUsed';
-import Deliverables from '../../../components/experience/Deliverables';
-import MetricsGrid from '../../../components/experience/MetricsGrid';
 import ExperienceNavigation from '../../../components/experience/ExperienceNavigation';
-import { getStatusInfo } from '../../../lib/utils';
+import SectionHeading from '../../../components/ui/SectionHeading';
 import styles from './page.module.css';
 
 export function generateStaticParams() {
@@ -17,63 +14,42 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const exp = experiences.find((e) => e.slug === slug);
   if (!exp) return { title: 'Experience Not Found' };
-  return {
-    title: exp.title,
-    description: exp.summary,
-  };
+  return { title: exp.title, description: exp.summary };
 }
 
 export default async function ExperienceDetailPage({ params }) {
   const { slug } = await params;
   const expIndex = experiences.findIndex((e) => e.slug === slug);
   if (expIndex === -1) notFound();
-
   const exp = experiences[expIndex];
-  const prev = expIndex > 0 ? experiences[expIndex - 1] : null;
-  const next = expIndex < experiences.length - 1 ? experiences[expIndex + 1] : null;
-  const { label: statusLabel } = getStatusInfo(exp.status);
 
   return (
     <div className={`container ${styles.page}`}>
-      {/* Top breadcrumb nav */}
-      <div className={styles.topNav}>
-        <Link href="/experience" className={`${styles.backLink} mono`}>
-          ← [ ← BACK TO ALL EXPERIENCES ]
-        </Link>
-        <div className={styles.topMeta}>
-          <span className={`${styles.archiveId} mono`}>
-            [ ARCHIVE_ID: {exp.id}_USAF_MAAP_{String(expIndex + 1).padStart(2, '0')} ]
-          </span>
-        </div>
-        <div className={styles.topRight}>
-          <span className={`${styles.statusDot} ${exp.status === 'active' ? styles.dotActive : ''}`} />
-          <span className={`${styles.statusText} mono`}>[ {statusLabel} ]</span>
-          <span className={`${styles.draftStamp} mono`}>[ DRAFT_STAMP: V2.4_WIREFRAME ]</span>
-        </div>
-      </div>
-
-      {/* Main experience content */}
+      <nav className={styles.topNav} aria-label="Experience breadcrumb">
+        <Link href="/#experience" className={`${styles.backLink} mono`}>← BACK TO EXPERIENCE</Link>
+        <span className={`${styles.archiveId} mono`}>{exp.id}</span>
+      </nav>
       <ExperienceHero experience={exp} />
-
-      {/* Two-column lower layout */}
-      <div className={styles.lowerGrid}>
-        <div className={styles.leftCol}>
-          <SkillsUsed skills={exp.skills} />
-          <Deliverables deliverables={exp.deliverables} />
+      <section aria-label="Technical breakdown" className={styles.breakdown}>
+        <SectionHeading number="01" title="[ TECHNICAL BREAKDOWN ]" />
+        <div className={styles.details}>
+          {exp.technicalBreakdown.map((item, index) => (
+            <article key={item.title} className={styles.detail}>
+              <span className={`${styles.detailNumber} mono`}>{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
-        <div className={styles.rightCol}>
-          <MetricsGrid metrics={exp.metrics} />
-        </div>
-      </div>
-
-      {/* Experience navigation */}
+      </section>
       <ExperienceNavigation
-        prev={prev}
+        prev={experiences[expIndex - 1] || null}
         current={expIndex}
-        next={next}
+        next={experiences[expIndex + 1] || null}
         total={experiences.length}
       />
     </div>
   );
 }
-

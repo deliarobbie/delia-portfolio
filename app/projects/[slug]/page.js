@@ -8,20 +8,20 @@ import ImagePlaceholder from '../../../components/ui/ImagePlaceholder';
 import styles from './page.module.css';
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return projects.filter((p) => !p.cardOnly).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }) {
   params = await params;
   const project = projects.find((p) => p.slug === params.slug);
-  if (!project) return { title: 'Project Not Found' };
+  if (!project || project.cardOnly) return { title: 'Project Not Found' };
   return { title: project.title, description: project.description };
 }
 
 export default async function ProjectDetailPage({ params }) {
   params = await params;
   const project = projects.find((p) => p.slug === params.slug);
-  if (!project) notFound();
+  if (!project || project.cardOnly) notFound();
 
   const isPlaceholder = project.status === 'placeholder';
 
@@ -29,7 +29,7 @@ export default async function ProjectDetailPage({ params }) {
     <div className={`container ${styles.page}`}>
       {/* Breadcrumb */}
       <div className={styles.breadcrumb}>
-        <Link href="/projects" className={`${styles.backLink} mono`}>
+        <Link href="/#projects" className={`${styles.backLink} mono`}>
           ← [ ← BACK TO PROJECTS ]
         </Link>
         <span className={`${styles.projectId} mono`}>[ {project.id} ]</span>
@@ -66,6 +66,8 @@ export default async function ProjectDetailPage({ params }) {
               <SkillTag key={t}>{t}</SkillTag>
             ))}
           </div>
+
+
 
           <section className={styles.block}>
             <h2 className={`${styles.blockTitle} mono`}>// PROJECT_OVERVIEW</h2>
@@ -105,14 +107,22 @@ export default async function ProjectDetailPage({ params }) {
           </section>
         </div>
 
+
         {/* Sidebar */}
         <aside className={styles.sidebar}>
+          <div className={styles.sideCard}>
+            <h3 className={`${styles.sideTitle} mono`}>[ STATUS ]</h3>
+            <span className={`${styles.statusBadge} ${isPlaceholder ? styles.placeholderStatus : styles.liveStatus} mono`}>
+              {project.status.toUpperCase()}
+            </span>
+          </div>
+
           <div className={styles.sideCard}>
             <h3 className={`${styles.sideTitle} mono`}>[ LINKS ]</h3>
             <div className={styles.sideLinks}>
               {project.githubUrl && !project.githubUrl.includes('PLACEHOLDER') ? (
                 <Button href={project.githubUrl} variant="secondary" external>
-                  [ GitHub Repository ]
+                  [ View Source Code ]
                 </Button>
               ) : (
                 <span className={`${styles.sideDisabled} mono`}>[ GitHub — Not configured ]</span>
@@ -122,15 +132,14 @@ export default async function ProjectDetailPage({ params }) {
                   [ {project.liveLabel || 'Live Demo'} ]
                 </Button>
               )}
+              {project.prototypeUrl && (
+                <Button href={project.prototypeUrl} variant="ghost" external>
+                  [ View Original Prototypes ]
+                </Button>
+              )}
             </div>
           </div>
 
-          <div className={styles.sideCard}>
-            <h3 className={`${styles.sideTitle} mono`}>[ STATUS ]</h3>
-            <span className={`${styles.statusBadge} ${isPlaceholder ? styles.placeholderStatus : styles.liveStatus} mono`}>
-              {project.status.toUpperCase()}
-            </span>
-          </div>
         </aside>
       </div>
     </div>
